@@ -23,8 +23,14 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public int getCount(int id) {
-		return categoryDao.selectCount(id);
+	public int getCountById(int categoryId) {
+		return categoryDao.selectCountById(categoryId);
+	}
+
+	@Override
+	@Transactional
+	public int getCount() {
+		return categoryDao.selectCount();
 	}
 	 
 }
