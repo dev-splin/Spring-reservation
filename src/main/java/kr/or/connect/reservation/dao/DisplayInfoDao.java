@@ -13,7 +13,10 @@ import kr.or.connect.reservation.dto.DisplayInfo;
 
 import static kr.or.connect.reservation.dao.DisplayInfoDaoSqls.*;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class DisplayInfoDao {
@@ -24,7 +27,14 @@ public class DisplayInfoDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
-	public List<DisplayInfo> selectAll() {
-		return jdbc.query(SELECT_DISPLAY_INFO, rowMapper);
+	public List<DisplayInfo> selectById(int categoryId, int start) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("categoryId", categoryId);
+		params.put("start", start);
+		return jdbc.query(SELECT_DISPLAY_INFO_BY_ID, params, rowMapper);
+	}
+	
+	public List<DisplayInfo> selectAll(int start) {
+		return jdbc.query(SELECT_DISPLAY, Collections.singletonMap("start", start), rowMapper);
 	}
 }

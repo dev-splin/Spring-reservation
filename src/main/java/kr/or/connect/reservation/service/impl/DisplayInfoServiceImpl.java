@@ -17,7 +17,13 @@ public class DisplayInfoServiceImpl implements DisplayInfoService{
 
 	@Override
 	@Transactional
-	public List<DisplayInfo> getDisplayInfo() {
-		return displayInfoDao.selectAll();
+	public List<DisplayInfo> getDisplayInfoById(int categoryId, int start) {
+		return displayInfoDao.selectById(categoryId, start);
+	}
+
+	@Override
+	@Transactional
+	public List<DisplayInfo> getDisplayInfo(int start) {
+		return displayInfoDao.selectAll(start);
 	}
 }
