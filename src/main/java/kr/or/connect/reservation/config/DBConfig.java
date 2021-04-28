@@ -24,7 +24,6 @@ public class DBConfig implements TransactionManagementConfigurer {
 	
 	@Bean
 	public DataSource dataSource() {
-		System.out.println(env.getProperty("spring.datasource.driver-class-name"));
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
 		dataSource.setUrl(env.getProperty("spring.datasource.url"));
