@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.config.WebMvcContextConfiguration;
-import kr.or.connect.reservation.controller.api.DisplayinfoApiController;
+import kr.or.connect.reservation.controller.api.DisplayInfoApiController;
 import kr.or.connect.reservation.dto.DisplayInfo;
 import kr.or.connect.reservation.service.CategoryService;
 import kr.or.connect.reservation.service.DisplayInfoService;
@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class DisplayInfoApiControllerTest {
 
 	@InjectMocks
-	DisplayinfoApiController displayinfoApiController;
+	DisplayInfoApiController displayinfoApiController;
 	@Mock
 	CategoryService categoryService;
 	@Mock

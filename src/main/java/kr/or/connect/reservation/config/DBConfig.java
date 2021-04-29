@@ -1,6 +1,5 @@
 package kr.or.connect.reservation.config;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
