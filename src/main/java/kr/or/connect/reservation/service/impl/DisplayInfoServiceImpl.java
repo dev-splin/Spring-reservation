@@ -17,13 +17,13 @@ public class DisplayInfoServiceImpl implements DisplayInfoService{
 
 	@Override
 	@Transactional
-	public List<DisplayInfo> getDisplayInfoById(int categoryId, int start) {
+	public List<DisplayInfo> getDisplayInfoById(Long categoryId, Long start) {
 		return displayInfoDao.selectById(categoryId, start);
 	}
 
 	@Override
 	@Transactional
-	public List<DisplayInfo> getDisplayInfo(int start) {
+	public List<DisplayInfo> getDisplayInfo(Long start) {
 		return displayInfoDao.selectAll(start);
 	}
 }

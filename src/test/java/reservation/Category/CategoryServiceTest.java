@@ -17,7 +17,7 @@ public class CategoryServiceTest {
 	
 	@Test
 	public void countTest() throws Exception {
-		int count = categoryService.getCountById(3);
+		int count = categoryService.getCountById(3L);
 		
 		System.out.println(count);
 	}

@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.config.WebMvcContextConfiguration;
-import kr.or.connect.reservation.controller.api.DisplayInfoApiController;
 import kr.or.connect.reservation.dto.DisplayInfo;
 import kr.or.connect.reservation.service.CategoryService;
 import kr.or.connect.reservation.service.DisplayInfoService;
@@ -37,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class DisplayInfoApiControllerTest {
 
 	@InjectMocks
-	DisplayInfoApiController displayinfoApiController;
+	DisplayInfoApiControllerTest displayinfoApiController;
 	@Mock
 	CategoryService categoryService;
 	@Mock
@@ -53,8 +52,8 @@ public class DisplayInfoApiControllerTest {
 	@Test
 	public void getDisplayInfos() throws Exception {
 		DisplayInfo displayInfo = new DisplayInfo();
-		displayInfo.setId(21);
-		displayInfo.setCategoryId(3);
+		displayInfo.setId(21L);
+		displayInfo.setCategoryId(3L);
 		displayInfo.setName("테스트이름");
 		displayInfo.setDescription("테스트설명");
 		displayInfo.setContent("테스트 중 입니다.");
@@ -68,16 +67,16 @@ public class DisplayInfoApiControllerTest {
 		displayInfo.setEmail("dev.splin@gmail.com");
 		displayInfo.setCreateDate(new Date());
 		displayInfo.setModifyDate(new Date());
-		displayInfo.setFileId(28);
+		displayInfo.setFileId(28L);
 		
 		List<DisplayInfo> list = Arrays.asList(displayInfo);
 //		when(categoryService.getCountById(3)).thenReturn(1);
-		when(displayInfoService.getDisplayInfoById(3, 0)).thenReturn(list);
+		when(displayInfoService.getDisplayInfoById(3L, 0L)).thenReturn(list);
 		
 		RequestBuilder reqbuilder = MockMvcRequestBuilders.get("/api/displayinfos?categoryId="+3).contentType(MediaType.APPLICATION_JSON);
 		mockMvc.perform(reqbuilder).andExpect(status().isOk()).andDo(print());
 		
 //		verify(categoryService).getCountById(3);
-		verify(displayInfoService).getDisplayInfoById(3, 0);
+		verify(displayInfoService).getDisplayInfoById(3L, 0L);
 	}
 }

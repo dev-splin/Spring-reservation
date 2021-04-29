@@ -27,7 +27,7 @@ public class CategoryDao {
 		return jdbc.query(SELECT_GROUP_COUNT, rowMapper);
 	}
 	
-	public int selectCountById(int categoryId) {
+	public int selectCountById(Long categoryId) {
 		return jdbc.queryForObject(SELECT_COUNT_BY_ID, Collections.singletonMap("categoryId", categoryId), Integer.class);
 	}
 	

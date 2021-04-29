@@ -5,9 +5,9 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class DisplayInfo {
-	private int id;
-	private int categoryId;
-	private int displayInfoId;
+	private Long id;
+	private Long categoryId;
+	private Long displayInfoId;
 	private String name;
 	private String description;
 	private String content;
@@ -23,24 +23,24 @@ public class DisplayInfo {
 	private Date createDate;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.S")
 	private Date modifyDate;
-	private int fileId;
+	private Long fileId;
 		
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getCategoryId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
-	public int getDisplayInfoId() {
+	public Long getDisplayInfoId() {
 		return displayInfoId;
 	}
-	public void setDisplayInfoId(int displayInfoId) {
+	public void setDisplayInfoId(Long displayInfoId) {
 		this.displayInfoId = displayInfoId;
 	}
 	public String getName() {
@@ -121,10 +121,10 @@ public class DisplayInfo {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	public int getFileId() {
+	public Long getFileId() {
 		return fileId;
 	}
-	public void setFileId(int fileId) {
+	public void setFileId(Long fileId) {
 		this.fileId = fileId;
 	}
 	

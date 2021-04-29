@@ -27,14 +27,14 @@ public class DisplayInfoDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
-	public List<DisplayInfo> selectById(int categoryId, int start) {
-		Map<String, Integer> params = new HashMap<>();
+	public List<DisplayInfo> selectById(Long categoryId, Long start) {
+		Map<String, Long> params = new HashMap<>();
 		params.put("categoryId", categoryId);
 		params.put("start", start);
 		return jdbc.query(SELECT_DISPLAY_INFO_BY_ID, params, rowMapper);
 	}
 	
-	public List<DisplayInfo> selectAll(int start) {
+	public List<DisplayInfo> selectAll(Long start) {
 		return jdbc.query(SELECT_DISPLAY, Collections.singletonMap("start", start), rowMapper);
 	}
 }

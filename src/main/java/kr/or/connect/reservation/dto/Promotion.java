@@ -2,32 +2,32 @@ package kr.or.connect.reservation.dto;
 
 // product, promotion, category, product_image 테이블 사용
 public class Promotion {
-	int id;
-	int productId;
-	int categoryId;
+	Long id;
+	Long productId;
+	Long categoryId;
 	String categoryName;
 	String description;
-	int fileId;
+	Long fileId;
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getProductId() {
+	public Long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 	public String getCategoryName() {
 		return categoryName;
 	}
-	public int getCategoryId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
 	public void setCategoryName(String categoryName) {
@@ -39,10 +39,10 @@ public class Promotion {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getFileId() {
+	public Long getFileId() {
 		return fileId;
 	}
-	public void setFileId(int fileId) {
+	public void setFileId(Long fileId) {
 		this.fileId = fileId;
 	}
 	@Override

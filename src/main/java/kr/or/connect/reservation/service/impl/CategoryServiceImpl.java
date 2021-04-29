@@ -23,7 +23,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	@Transactional
-	public int getCountById(int categoryId) {
+	public int getCountById(Long categoryId) {
 		return categoryDao.selectCountById(categoryId);
 	}
 
