@@ -16,8 +16,8 @@ import kr.or.connect.reservation.service.DisplayInfoService;
 
 @RestController
 @RequestMapping(path = "/api")
-public class DisplayinfoApiController {
-	
+public class DisplayInfoApiController {
+
 	@Autowired
 	CategoryService categoryService;
 	
@@ -50,5 +50,4 @@ public class DisplayinfoApiController {
 		
 		return map;
 	}
-	
 }
