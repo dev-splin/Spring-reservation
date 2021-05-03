@@ -1,4 +1,4 @@
-package reservation.Promotion;
+package reservation.ServiceTest;
 
 import java.util.List;
 
@@ -9,20 +9,20 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.connect.reservation.config.ApplicationConfig;
-import kr.or.connect.reservation.dto.Promotion;
-import kr.or.connect.reservation.service.PromotionService;
+import kr.or.connect.reservation.dao.DisplayInfoImageDao;
+import kr.or.connect.reservation.dto.DisplayInfoImage;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ApplicationConfig.class})
-public class PromotionServiceTest {
+public class DisplayInfoImageService {
 	@Autowired
-	PromotionService promotionService;
+	DisplayInfoImageDao displayInfoImageDao;
 	
 	@Test
-	public void selectAllTest() throws Exception {
-		List<Promotion> list = promotionService.getPromotion();
+	public void selectByIdTest() {
+		List<DisplayInfoImage> list = displayInfoImageDao.selectByDisplayInfoId(1L);
 		
-		for(Promotion p : list)
-			System.out.println(p);
+		for(DisplayInfoImage d : list)
+			System.out.println(d);
 	}
 }

@@ -1,4 +1,4 @@
-package reservation.DisplayInfo;
+package reservation.ApiControllerTest;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -71,12 +71,12 @@ public class DisplayInfoApiControllerTest {
 		
 		List<DisplayInfo> list = Arrays.asList(displayInfo);
 //		when(categoryService.getCountById(3)).thenReturn(1);
-		when(displayInfoService.getDisplayInfoById(3L, 0L)).thenReturn(list);
+		when(displayInfoService.getDisplayInfoByCategoryId(3L, 0L)).thenReturn(list);
 		
 		RequestBuilder reqbuilder = MockMvcRequestBuilders.get("/api/displayinfos?categoryId="+3).contentType(MediaType.APPLICATION_JSON);
 		mockMvc.perform(reqbuilder).andExpect(status().isOk()).andDo(print());
 		
 //		verify(categoryService).getCountById(3);
-		verify(displayInfoService).getDisplayInfoById(3L, 0L);
+		verify(displayInfoService).getDisplayInfoByCategoryId(3L, 0L);
 	}
 }
