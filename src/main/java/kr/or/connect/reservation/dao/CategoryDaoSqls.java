@@ -8,7 +8,7 @@ public class CategoryDaoSqls {
 			+ "GROUP BY c.id "
 			+ "ORDER BY id asc";
 	
-	final static String SELECT_COUNT_BY_ID = "SELECT count(c.id) count FROM category c LEFT JOIN "
+	final static String SELECT_COUNT_BY_CATEGORY_ID = "SELECT count(c.id) count FROM category c LEFT JOIN "
 			+ "(SELECT category_id FROM product p LEFT JOIN display_info d "
 			+ "ON p.id = d.product_id) s "
 			+ "ON c.id = s.category_id "

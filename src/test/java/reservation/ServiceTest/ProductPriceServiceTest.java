@@ -1,4 +1,6 @@
-package reservation.Category;
+package reservation.ServiceTest;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,19 +9,20 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.connect.reservation.config.ApplicationConfig;
-import kr.or.connect.reservation.service.CategoryService;
+import kr.or.connect.reservation.dto.ProductPrice;
+import kr.or.connect.reservation.service.ProductPriceService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ApplicationConfig.class})
-public class CategoryServiceTest {
+public class ProductPriceServiceTest {
 	@Autowired
-	CategoryService categoryService;
+	ProductPriceService productPriceService;
 	
 	@Test
-	public void countTest() throws Exception {
-		int count = categoryService.getCountById(3L);
+	public void getProductPricesTest() {
+		List<ProductPrice> list = productPriceService.getProductPrices(1L);
 		
-		System.out.println(count);
+		for(ProductPrice p : list)
+			System.out.println(p);
 	}
-
 }

@@ -12,8 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.connect.reservation.dto.DisplayInfo;
+import kr.or.connect.reservation.dto.DisplayInfoImage;
+import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductPrice;
 import kr.or.connect.reservation.service.CategoryService;
+import kr.or.connect.reservation.service.DisplayInfoImageService;
 import kr.or.connect.reservation.service.DisplayInfoService;
+import kr.or.connect.reservation.service.ProductImageService;
+import kr.or.connect.reservation.service.ProductPriceService;
+import kr.or.connect.reservation.service.ReservationUserCommentService;
 
 @RestController
 @RequestMapping(path = "/api/displayinfos")
@@ -21,9 +28,16 @@ public class DisplayinfoApiController {
 
 	@Autowired
 	CategoryService categoryService;
-	
 	@Autowired
 	DisplayInfoService displayInfoService;
+	@Autowired
+	ProductImageService productImageService;
+	@Autowired
+	DisplayInfoImageService displayInfoImageService;
+	@Autowired
+	ReservationUserCommentService reservationUserCommentService;
+	@Autowired
+	ProductPriceService productPriceService;
 	
 	@GetMapping
 	public Map<String, Object> getDisplayInfos(
@@ -38,8 +52,8 @@ public class DisplayinfoApiController {
 			totalCount = categoryService.getCount();
 		}
 		else {
-			products = displayInfoService.getDisplayInfoById(categoryId, start);
-			totalCount = categoryService.getCountById(categoryId);
+			products = displayInfoService.getDisplayInfoByCategoryId(categoryId, start);
+			totalCount = categoryService.getCountByCategoryId(categoryId);
 		}
 		
 		int productCount = products.size();
@@ -55,6 +69,19 @@ public class DisplayinfoApiController {
 	@GetMapping("/{displayId}")
 	public Map<String, Object> getDetailedDisplayInfos(@PathVariable(name = "displayId") Long id) {
 		
-		return null;
+		DisplayInfo product = displayInfoService.getDisplayInfoByDisplayInfoId(id);
+		List<ProductImage> productImages = productImageService.getProductImageByProductId(product.getId(), "ma");
+		List<DisplayInfoImage> displayInfoImages = displayInfoImageService.getDisplayImageByDisplayInfoId(id);
+		int avgScore = reservationUserCommentService.getScoreAvgScoreByProductId(product.getId());
+		List<ProductPrice> productPrices = productPriceService.getProductPrices(product.getId());
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("product", product);
+		map.put("productImages", productImages);
+		map.put("displayInfoImages", displayInfoImages);
+		map.put("avgScore", avgScore);
+		map.put("productPrices", productPrices);
+		
+		return map;
 	}
 }
