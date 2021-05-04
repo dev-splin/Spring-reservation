@@ -15,11 +15,14 @@ import kr.or.connect.reservation.dto.DisplayInfo;
 import kr.or.connect.reservation.dto.DisplayInfoImage;
 import kr.or.connect.reservation.dto.ProductImage;
 import kr.or.connect.reservation.dto.ProductPrice;
+import kr.or.connect.reservation.dto.ReservationUserComment;
+import kr.or.connect.reservation.dto.ReservationUserCommentImage;
 import kr.or.connect.reservation.service.CategoryService;
 import kr.or.connect.reservation.service.DisplayInfoImageService;
 import kr.or.connect.reservation.service.DisplayInfoService;
 import kr.or.connect.reservation.service.ProductImageService;
 import kr.or.connect.reservation.service.ProductPriceService;
+import kr.or.connect.reservation.service.ReservationUserCommentImageService;
 import kr.or.connect.reservation.service.ReservationUserCommentService;
 
 @RestController
@@ -38,6 +41,8 @@ public class DisplayinfoApiController {
 	ReservationUserCommentService reservationUserCommentService;
 	@Autowired
 	ProductPriceService productPriceService;
+	@Autowired
+	ReservationUserCommentImageService reservationUserCommentImageService;
 	
 	@GetMapping
 	public Map<String, Object> getDisplayInfos(
@@ -62,6 +67,32 @@ public class DisplayinfoApiController {
 		map.put("totalCount", totalCount);
 		map.put("productCount", productCount);
 		map.put("products", products);
+		
+		return map;
+	}
+	
+	@GetMapping("/comments")
+	public Map<String, Object> getProductComments(
+			@RequestParam(name = "productId", required = false, defaultValue = "1") Long productId,
+			@RequestParam(name = "start", required = false, defaultValue = "0") int start) {
+		
+		int commentCount = 5;
+		
+		List<ReservationUserComment> reservationUserComments = 
+				reservationUserCommentService.getReservationUserCommentByProductId(productId, start, commentCount);
+		
+		int totalCount = reservationUserCommentService.getReservationUserCommentCount(productId);
+		
+		for(ReservationUserComment c : reservationUserComments) {
+			List<ReservationUserCommentImage> reservationUserCommentImages = 
+					reservationUserCommentImageService.getReservationUserCommentImageByReservationUserId(c.getUserId());
+			c.setReservationUserCommentImages(reservationUserCommentImages);
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("totalCount", totalCount);
+		map.put("commentCount", commentCount);
+		map.put("reservationUserComments", reservationUserComments);
 		
 		return map;
 	}
