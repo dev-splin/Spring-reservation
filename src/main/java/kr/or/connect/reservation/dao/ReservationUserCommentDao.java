@@ -11,6 +11,9 @@ import kr.or.connect.reservation.dto.ReservationUserComment;
 import static kr.or.connect.reservation.dao.ReservationUserCommentDaoSqls.*;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ReservationUserCommentDao {
@@ -23,5 +26,17 @@ public class ReservationUserCommentDao {
 	
 	public int selectAvgScoreByProductId(Long productId) {
 		return jdbc.queryForObject(SELECT_SCORE_AVG_BY_PRODUCT_ID, Collections.singletonMap("product_id", productId), Integer.class);
+	}
+	
+	public List<ReservationUserComment> selectReservationUserCommentByProductId(Long productId, int start, int limit) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("product_id", productId);
+		params.put("start", start);
+		params.put("limit", limit);
+		return jdbc.query(SELECT_RESERVATION_USER_COMMENT_BY_PRODUCT_ID, params, rowMapper);
+	}
+	
+	public int selectReservationUserCommentCount(Long productId) {
+		return jdbc.queryForObject(SELECT_RESERVATION_USER_COMMENT_COUNT, Collections.singletonMap("product_id", productId) ,Integer.class);
 	}
 }
