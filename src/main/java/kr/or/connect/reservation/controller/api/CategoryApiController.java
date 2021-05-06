@@ -19,11 +19,12 @@ public class CategoryApiController {
 	@Autowired
 	CategoryService categoryService;
 	
+	// category를 가져와서 json으로 반환합니다.
 	@GetMapping(path = "/categories")
 	public Map<String, Object> getCategories() {
 		List<Category> list = categoryService.getCategories();
-		
 		Map<String, Object> map = new HashMap<>();
+		
 		map.put("size", list.size());
 		map.put("items", list);
 		

@@ -20,6 +20,7 @@ public class PromotionApiController {
 	PromotionService promotionService;
 
 	@GetMapping(path = "/promotions")
+	// 프로모션 정보를 가져와 size와 함께 json으로 반환합니다.
 	public Map<String, Object> getPromotions() {
 		
 		List<Promotion> list = promotionService.getPromotion();

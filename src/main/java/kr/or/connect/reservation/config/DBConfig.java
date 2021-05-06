@@ -19,9 +19,11 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 public class DBConfig implements TransactionManagementConfigurer {
 	
 	@Autowired
+	// @PropertySource를 통해 properties 파일을 Environment에 로드합니다.
 	Environment env;
 	
 	@Bean
+	// dataSource 설정
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
@@ -32,11 +34,14 @@ public class DBConfig implements TransactionManagementConfigurer {
 		return dataSource;
 	}
 	
+	@Bean
+	// datasource를 사용해 PlatformTransactionManager 객체를 만듭니다.
 	public PlatformTransactionManager transactionManager() {
 		return new DataSourceTransactionManager(dataSource()); 
 	}
 	
 	@Override
+	// 사용자 간의 트랜잭션 처리를 위한 PlatformTransactionManager 설정
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
 		return transactionManager();
 	}

@@ -20,5 +20,4 @@ public class DisplayInfoImageServiceImpl implements DisplayInfoImageService {
 	public List<DisplayInfoImage> getDisplayImageByDisplayInfoId(Long displayInfoId) {
 		return displayInfoImageDao.selectByDisplayInfoId(displayInfoId);
 	}
-	
 }

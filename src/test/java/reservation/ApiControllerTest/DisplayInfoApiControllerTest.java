@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.config.WebMvcContextConfiguration;
+import kr.or.connect.reservation.controller.api.DisplayinfoApiController;
 import kr.or.connect.reservation.dto.DisplayInfo;
 import kr.or.connect.reservation.service.CategoryService;
 import kr.or.connect.reservation.service.DisplayInfoService;
@@ -36,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class DisplayInfoApiControllerTest {
 
 	@InjectMocks
-	DisplayInfoApiControllerTest displayinfoApiController;
+	DisplayinfoApiController displayinfoApiController;
 	@Mock
 	CategoryService categoryService;
 	@Mock
@@ -70,13 +71,13 @@ public class DisplayInfoApiControllerTest {
 		displayInfo.setFileId(28L);
 		
 		List<DisplayInfo> list = Arrays.asList(displayInfo);
-//		when(categoryService.getCountById(3)).thenReturn(1);
+		when(categoryService.getCountByCategoryId(3L)).thenReturn(1);
 		when(displayInfoService.getDisplayInfoByCategoryId(3L, 0L)).thenReturn(list);
 		
 		RequestBuilder reqbuilder = MockMvcRequestBuilders.get("/api/displayinfos?categoryId="+3).contentType(MediaType.APPLICATION_JSON);
 		mockMvc.perform(reqbuilder).andExpect(status().isOk()).andDo(print());
 		
-//		verify(categoryService).getCountById(3);
+		verify(categoryService).getCountByCategoryId(3L);
 		verify(displayInfoService).getDisplayInfoByCategoryId(3L, 0L);
 	}
 }

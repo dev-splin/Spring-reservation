@@ -45,6 +45,7 @@ public class DisplayinfoApiController {
 	ReservationUserCommentImageService reservationUserCommentImageService;
 	
 	@GetMapping
+	// 카테고리id에 해당하는 디스플레이 정보 4개, 총 개수를 가져와 json으로 반환합니다.
 	public Map<String, Object> getDisplayInfos(
 			@RequestParam(name = "categoryId", required = false, defaultValue = "0") Long categoryId,
 			@RequestParam(name = "start", required = false, defaultValue = "0") Long start) {
@@ -72,6 +73,7 @@ public class DisplayinfoApiController {
 	}
 	
 	@GetMapping("/comments")
+	// productId에 해당하는 상품의 댓글정보들과 총 개수, 읽어온 댓글 수를 json으로 반환합니다. 
 	public Map<String, Object> getProductComments(
 			@RequestParam(name = "productId", required = false, defaultValue = "1") Long productId,
 			@RequestParam(name = "start", required = false, defaultValue = "0") int start) {
@@ -98,12 +100,16 @@ public class DisplayinfoApiController {
 	}
 	
 	@GetMapping("/{displayId}")
+	// displayId에 해당하는 전시정보들을 가져와 json으로 반환합니다.
 	public Map<String, Object> getDetailedDisplayInfos(@PathVariable(name = "displayId") Long id) {
 		
 		DisplayInfo product = displayInfoService.getDisplayInfoByDisplayInfoId(id);
+		
 		List<ProductImage> productImages = productImageService.getProductImageByProductId(product.getId(), "ma");
 		List<DisplayInfoImage> displayInfoImages = displayInfoImageService.getDisplayImageByDisplayInfoId(id);
+		
 		int avgScore = reservationUserCommentService.getScoreAvgScoreByProductId(product.getId());
+		
 		List<ProductPrice> productPrices = productPriceService.getProductPrices(product.getId());
 		
 		Map<String, Object> map = new HashMap<>();

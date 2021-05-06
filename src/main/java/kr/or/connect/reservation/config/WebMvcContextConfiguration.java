@@ -24,6 +24,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class WebMvcContextConfiguration implements WebMvcConfigurer {
 
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/META-INF/resources/webjars/").setCachePeriod(31556926);
@@ -51,6 +52,7 @@ public class WebMvcContextConfiguration implements WebMvcConfigurer {
 	}
 	
 	@Bean
+	// Swagger 사용을 위한 설정
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
@@ -61,6 +63,7 @@ public class WebMvcContextConfiguration implements WebMvcConfigurer {
 				.useDefaultResponseMessages(false);
 	}
 
+	// Swagger에 나타날 정보들
 	private ApiInfo apiInfo() {
 		Contact contact = new Contact("Splin", "https://dev-splin.github.io/", "dev.splin@gmail.com");
 		ApiInfo apiInfo =
