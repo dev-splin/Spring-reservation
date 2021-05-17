@@ -39,6 +39,6 @@ public class DisplayInfoDao {
 	}
 	
 	public DisplayInfo selectByDisplayInfoId(Long displayInfoId) {
-		return jdbc.queryForObject(SELECT_DINPLAY_INFO_BY_DISPLAY_INFO_ID, Collections.singletonMap("display_info_id", displayInfoId), rowMapper);
+		return jdbc.queryForObject(SELECT_DINPLAY_INFO_BY_DISPLAY_INFO_ID, Collections.singletonMap("displayInfoId", displayInfoId), rowMapper);
 	}
 }

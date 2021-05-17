@@ -17,8 +17,8 @@ public class ReservationUserCommentImageServiceImpl implements ReservationUserCo
 	
 	@Override
 	@Transactional
-	public List<ReservationUserCommentImage> getReservationUserCommentImageByReservationUserId(Long ReservationUserId) {
-		return reservationUserCommentImageDao.selectByReservationUserId(ReservationUserId);
+	public List<ReservationUserCommentImage> getReservationUserCommentImageByReservationUserId(Long reservationUserId) {
+		return reservationUserCommentImageDao.selectByReservationUserId(reservationUserId);
 	}
 
 }

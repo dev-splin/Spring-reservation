@@ -5,5 +5,5 @@ import java.util.List;
 import kr.or.connect.reservation.dto.Promotion;
 
 public interface PromotionService {
-	public List<Promotion> getPromotion();
+	List<Promotion> getPromotion();
 }

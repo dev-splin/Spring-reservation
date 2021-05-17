@@ -1,29 +1,49 @@
 package reservation.ServiceTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.dao.ReservationUserCommentImageDao;
 import kr.or.connect.reservation.dto.ReservationUserCommentImage;
-import kr.or.connect.reservation.service.ReservationUserCommentImageService;
+import kr.or.connect.reservation.service.impl.ReservationUserCommentImageServiceImpl;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class})
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.verify;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+
+@RunWith(MockitoJUnitRunner.class)
 public class ReservationUserCommentImageServiceTest {
-	@Autowired
-	ReservationUserCommentImageService reservationUserCommentImageService;
+	@InjectMocks
+	ReservationUserCommentImageServiceImpl reservationUserCommentImageServiceImpl;
+	
+	@Mock
+	ReservationUserCommentImageDao reservationUserCommentImageDao;
 	
 	@Test
-	public void getReservationUserCommentImageTest() {
-		List<ReservationUserCommentImage> list = 
-				reservationUserCommentImageService.getReservationUserCommentImageByReservationUserId(1L);
+	public void getReservationUserCommentImageByReservationUserIdTest() {
+		// given
+		ReservationUserCommentImage reservationUserCommentImage = new ReservationUserCommentImage();
 		
-		for(ReservationUserCommentImage r : list)
-			System.out.println(r);
+		List<ReservationUserCommentImage> list = new ArrayList<>();
+		list.add(reservationUserCommentImage);
+		
+		given(reservationUserCommentImageDao.selectByReservationUserId(15L)).willReturn(list);
+		
+		// when
+		List<ReservationUserCommentImage> result = reservationUserCommentImageServiceImpl.getReservationUserCommentImageByReservationUserId(15L);
+		
+		// then
+		verify(reservationUserCommentImageDao).selectByReservationUserId(anyLong());
+		assertThat(result.size(), is(list.size()));
 	}
 }

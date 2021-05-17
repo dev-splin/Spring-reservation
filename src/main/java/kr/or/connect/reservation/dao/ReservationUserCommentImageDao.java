@@ -23,7 +23,7 @@ public class ReservationUserCommentImageDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
-	public List<ReservationUserCommentImage> selectByReservationUserId(Long ReservationUserId) {
-		return jdbc.query(SELECT_BY_RESERVATION_USER_ID, Collections.singletonMap("reservation_user_comment_id", ReservationUserId),rowMapper);
+	public List<ReservationUserCommentImage> selectByReservationUserId(Long reservationUserId) {
+		return jdbc.query(SELECT_BY_RESERVATION_USER_ID, Collections.singletonMap("reservationUserId", reservationUserId),rowMapper);
 	}
 }

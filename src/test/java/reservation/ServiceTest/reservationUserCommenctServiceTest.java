@@ -1,34 +1,87 @@
 package reservation.ServiceTest;
 
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.dao.ReservationUserCommentDao;
 import kr.or.connect.reservation.dto.ReservationUserComment;
-import kr.or.connect.reservation.service.ReservationUserCommentService;
+import kr.or.connect.reservation.service.impl.ReservationUserCommentServiceImpl;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class})
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.verify;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+
+@RunWith(MockitoJUnitRunner.class)
 public class reservationUserCommenctServiceTest {
-	@Autowired
-	ReservationUserCommentService reservationUserCommentService;
+	@InjectMocks
+	ReservationUserCommentServiceImpl reservationUserCommentServiceImpl;
+	
+	@Mock
+	ReservationUserCommentDao reservationUserCommentDao;
 	
 	@Test
-	public void getAvgScoreTest() {
-		System.out.println(reservationUserCommentService.getScoreAvgScoreByProductId(1L));
+	public void getScoreAvgScoreByProductIdTest() {
+		// given
+		given(reservationUserCommentDao.selectAvgScoreByProductId(1L)).willReturn(3);
+		
+		// when
+		int result = reservationUserCommentServiceImpl.getScoreAvgScoreByProductId(1L);
+		
+		// then
+		verify(reservationUserCommentDao).selectAvgScoreByProductId(anyLong());
+		assertThat(result, is(3));
 	}
 	
 	@Test
-	public void getReservationUserCommentByProductId() {
-		List<ReservationUserComment> list = reservationUserCommentService.getReservationUserCommentByProductId(1L, 0, 5);
+	public void getReservationUserCommentByProductIdTest() {
+		// given
+		ReservationUserComment reservationUserComment = new ReservationUserComment();
+		reservationUserComment.setId(15L);
+		reservationUserComment.setProductId(1L);
+		reservationUserComment.setReservationInfoId(15L);
+		reservationUserComment.setScore(5);
+		reservationUserComment.setReservationEmail("dev.splin@gmail.com");
+		reservationUserComment.setComment("댓글 테스트");
+		reservationUserComment.setCreateDate(new Date());
+		reservationUserComment.setModifyDate(new Date());
+		reservationUserComment.setReservationUserCommentImages(null);
 		
-		for(ReservationUserComment r : list)
-			System.out.println(r);
+		List<ReservationUserComment> list = new ArrayList<>();
+		list.add(reservationUserComment);
+		
+		given(reservationUserCommentDao.selectReservationUserCommentByProductId(1L, 0, 5)).willReturn(list);
+		
+		// when
+		List<ReservationUserComment> result = reservationUserCommentServiceImpl.getReservationUserCommentByProductId(1L, 0, 5);
+		
+		// then
+		verify(reservationUserCommentDao).selectReservationUserCommentByProductId(anyLong(), anyInt(), anyInt());
+		assertThat(result.size(), is(list.size()));
+	}
+	
+	@Test
+	public void getReservationUserCommentCountTest() {
+		// given
+		given(reservationUserCommentDao.selectReservationUserCommentCount(1L)).willReturn(5);
+		
+		// when
+		int result = reservationUserCommentServiceImpl.getReservationUserCommentCount(1L);
+		
+		// then
+		verify(reservationUserCommentDao).selectReservationUserCommentCount(anyLong());
+		assertThat(result, is(5));
 	}
 	
 }
