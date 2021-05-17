@@ -17,7 +17,7 @@ public class ReservationUserCommentServiceImpl implements ReservationUserComment
 	
 	@Override
 	@Transactional
-	public int getScoreAvgScoreByProductId(Long productId) {
+	public Integer getScoreAvgScoreByProductId(Long productId) {
 		return reservationUserCommenctDao.selectAvgScoreByProductId(productId);
 	}
 

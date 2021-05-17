@@ -24,6 +24,6 @@ public class DisplayInfoImageDao {
 	}
 	
 	public List<DisplayInfoImage> selectByDisplayInfoId(Long displayInfoId) {
-		return jdbc.query(SELECT_DISPLAY_INFO_IMAGE_BY_DISPLAY_INFO_ID, Collections.singletonMap("display_info_id", displayInfoId), rowMapper);
+		return jdbc.query(SELECT_DISPLAY_INFO_IMAGE_BY_DISPLAY_INFO_ID, Collections.singletonMap("displayInfoId", displayInfoId), rowMapper);
 	}
 }

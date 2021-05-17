@@ -1,28 +1,55 @@
 package reservation.ServiceTest;
 
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.dao.PromotionDao;
 import kr.or.connect.reservation.dto.Promotion;
-import kr.or.connect.reservation.service.PromotionService;
+import kr.or.connect.reservation.service.impl.PromotionServiceImpl;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class})
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.verify;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+
+@RunWith(MockitoJUnitRunner.class)
 public class PromotionServiceTest {
-	@Autowired
-	PromotionService promotionService;
+	@InjectMocks
+	PromotionServiceImpl promotionServiceImpl;
+	
+	@Mock
+	PromotionDao promotionDao;
 	
 	@Test
 	public void selectAllTest() throws Exception {
-		List<Promotion> list = promotionService.getPromotion();
+		// given
+		Promotion promotion = new Promotion();
+		promotion.setId(1L);
+		promotion.setProductId(1L);
+		promotion.setCategoryId(1L);
+		promotion.setCategoryName("카테고리 이름 테스트");
+		promotion.setDescription("설명 테스트");
+		promotion.setFileId(61L);
 		
-		for(Promotion p : list)
-			System.out.println(p);
+		List<Promotion> list = new ArrayList<>();
+		list.add(promotion); 
+		
+		given(promotionDao.selectAll()).willReturn(list);
+		
+		//when
+		List<Promotion> result = promotionServiceImpl.getPromotion();
+		
+		//then
+		verify(promotionDao).selectAll();
+		assertThat(result.size(), is(list.size()));
 	}
 }

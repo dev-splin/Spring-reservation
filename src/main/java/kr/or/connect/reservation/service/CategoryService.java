@@ -5,7 +5,7 @@ import java.util.List;
 import kr.or.connect.reservation.dto.Category;
 
 public interface CategoryService {
-	public List<Category> getCategories();
-	public int getCountByCategoryId(Long categoryId);
-	public int getCount();
+	List<Category> getCategories();
+	int getCountByCategoryId(Long categoryId);
+	int getCount();
 }

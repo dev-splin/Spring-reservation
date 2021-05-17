@@ -5,5 +5,5 @@ import java.util.List;
 import kr.or.connect.reservation.dto.ReservationUserCommentImage;
 
 public interface ReservationUserCommentImageService {
-	public List<ReservationUserCommentImage> getReservationUserCommentImageByReservationUserId(Long ReservationUserId);
+	List<ReservationUserCommentImage> getReservationUserCommentImageByReservationUserId(Long reservationUserId);
 }

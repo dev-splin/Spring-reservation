@@ -1,28 +1,60 @@
 package reservation.ServiceTest;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.dao.ProductImageDao;
 import kr.or.connect.reservation.dto.ProductImage;
-import kr.or.connect.reservation.service.ProductImageService;
+import kr.or.connect.reservation.service.impl.ProductImageServiceImpl;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class})
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.verify;
+
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+
+@RunWith(MockitoJUnitRunner.class)
 public class ProductImageServiceTest {
-	@Autowired
-	ProductImageService productImageService;
+	@InjectMocks
+	ProductImageServiceImpl productImageServiceImpl;
+	
+	@Mock
+	ProductImageDao productImageDao;
 	
 	@Test
 	public void selectByIdTest() throws Exception {
-		List<ProductImage> list = productImageService.getProductImageByProductId(1L, "ma");
+		// given
+		ProductImage productImage = new ProductImage();
+		productImage.setProductId(1L);
+		productImage.setProductImageId(2L);
+		productImage.setType("ma");
+		productImage.setfileInfoId(61L);
+		productImage.setFileName("파일 이름 테스트");
+		productImage.setSaveFileName("세이브 파일 이름 테스트");
+		productImage.setContentType("내용 타입 테스트");
+		productImage.setDeleteFlag(0);
+		productImage.setCreateDate(new Date());
+		productImage.setModifyDate(new Date());
 		
-		for(ProductImage p : list)
-			System.out.println(p);
+		List<ProductImage> list = new ArrayList<>();
+		list.add(productImage);
+		
+		given(productImageDao.selectByProductId(1L, "ma")).willReturn(list);
+		
+		// when
+		List<ProductImage> result = productImageServiceImpl.getProductImageByProductId(1L, "ma");
+		
+		// then
+		verify(productImageDao).selectByProductId(anyLong(), anyString());
+		assertThat(result.size(), is(list.size()));
 	}
 }
