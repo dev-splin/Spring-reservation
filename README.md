@@ -6,6 +6,8 @@ BoostCourse의 과제로 진행한 프로젝트입니다. 아무것도 없는 �
 
 ## 메인, 상세보기 관련 Web API 만들기
 
+예약 서비스 메인 페이지에서 사용하는 Web API와 예약 메인 페이지에서 전시 상품을 클릭했을 때 보여지는 상세 페이지와 관련된 Web API를 구현하였습니다.
+
 - 아무것도 없는 상태에서부터 만들기 시작하였기 때문에 `WebApplicationInitializer / AbstractAnnotationConfigDispatcherServletInitializer`의 차이와 Maven Project 기본적인 틀 만드는 법을 알게 되었습니다. ([Maven Project MVC 기본적인 틀 만들기 포스트 링크](https://dev-splin.github.io/spring/Spring-Maven-Project-MVC-Create-Basic-Frame/), [WebApplicationInitializer / AbstractAnnotationConfigDispatcherServletInitializer 포스트 링크](https://dev-splin.github.io/spring/Spring-WebApplicationInitializer,AbstractAnnotationConfigDispatcherServletInitializer/))
 - 데이터베이스를 설정하면서 `Properties`와 `Environment` 사용법을 익힐 수 있었습니다. ([Properties / Environment / Profile 포스트 링크](https://dev-splin.github.io/spring/Spring-Properties-Environment-Profile/#profile-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0))
 - Web API 명세서를 참고하여 개발하는 방법을 익힐 수 있었습니다.
