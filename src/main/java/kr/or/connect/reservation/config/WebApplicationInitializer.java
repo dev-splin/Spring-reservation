@@ -19,7 +19,7 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
 	// root-config를 설정해줍니다.(리스너)
 	protected Class<?>[] getRootConfigClasses() {
         // 배열로 되어있기 때문에 ','로 여러개의 Config파일을 지정할 수 있습니다.
-		return new Class<?>[] {ApplicationConfig.class};
+		return new Class<?>[] {ApplicationConfig.class, SecurityConfig.class};
 	}
 
 	@Override

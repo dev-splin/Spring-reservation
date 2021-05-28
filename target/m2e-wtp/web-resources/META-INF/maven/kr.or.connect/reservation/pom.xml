@@ -141,6 +141,33 @@
 	</dependency>
 	
 	
+	<!-- Spring Security -->
+    <!-- Spring Security Core -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- Spring Security Config -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- Spring Security Web -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- Spring Security JSP Custom Tags -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-taglibs</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+	
+	
 	<!-- java 9 이상에서 추가해줘야 합니다. @PostConstruct 등을 사용하려면 필요합니다-->
     <dependency>
         <groupId>javax.annotation</groupId>
