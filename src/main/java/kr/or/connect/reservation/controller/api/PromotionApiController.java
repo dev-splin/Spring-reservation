@@ -13,13 +13,13 @@ import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.service.PromotionService;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/promotions")
 public class PromotionApiController {
 	
 	@Autowired
 	PromotionService promotionService;
 
-	@GetMapping(path = "/promotions")
+	@GetMapping
 	// 프로모션 정보를 가져와 size와 함께 json으로 반환합니다.
 	public Map<String, Object> getPromotions() {
 		

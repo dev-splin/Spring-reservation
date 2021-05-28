@@ -13,14 +13,14 @@ import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.service.CategoryService;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/categories")
 public class CategoryApiController {
 	
 	@Autowired
 	CategoryService categoryService;
 	
 	// category를 가져와서 json으로 반환합니다.
-	@GetMapping(path = "/categories")
+	@GetMapping
 	public Map<String, Object> getCategories() {
 		List<Category> list = categoryService.getCategories();
 		Map<String, Object> map = new HashMap<>();
