@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.DisplayInfoImageDao;
-import kr.or.connect.reservation.dto.DisplayInfoImage;
+import kr.or.connect.reservation.dto.DisplayInfoImageDTO;
 import kr.or.connect.reservation.service.DisplayInfoImageService;
 
 @Service
@@ -17,7 +17,7 @@ public class DisplayInfoImageServiceImpl implements DisplayInfoImageService {
 	
 	@Override
 	@Transactional
-	public List<DisplayInfoImage> getDisplayImageByDisplayInfoId(Long displayInfoId) {
+	public List<DisplayInfoImageDTO> getDisplayImageByDisplayInfoId(Long displayInfoId) {
 		return displayInfoImageDao.selectByDisplayInfoId(displayInfoId);
 	}
 }

@@ -1,4 +1,4 @@
-package reservation.ServiceTest;
+package kr.or.connect.reservation.ServiceTest;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import kr.or.connect.reservation.dao.ProductPriceDao;
-import kr.or.connect.reservation.dto.ProductPrice;
+import kr.or.connect.reservation.dto.ProductPriceDTO;
 import kr.or.connect.reservation.service.impl.ProductPriceServiceImpl;
 
 import static org.mockito.BDDMockito.given;
@@ -32,7 +32,7 @@ public class ProductPriceServiceTest {
 	@Test
 	public void getProductPricesTest() {
 		// given
-		ProductPrice productPrice = new ProductPrice();
+		ProductPriceDTO productPrice = new ProductPriceDTO();
 		productPrice.setId(3L);
 		productPrice.setProductId(1L);
 		productPrice.setPriceTypeName("가격 타입 이름 테스트");
@@ -41,13 +41,16 @@ public class ProductPriceServiceTest {
 		productPrice.setCreateDate(new Date());
 		productPrice.setModifyDate(new Date());
 		
-		List<ProductPrice> list = new ArrayList<>();
+		List<ProductPriceDTO> list = new ArrayList<>();
 		list.add(productPrice);
+		
+		for(ProductPriceDTO dto : list)
+			System.out.println(dto);
 		
 		given(productPriceDao.selectByProductId(1L)).willReturn(list);
 		
 		// when
-		List<ProductPrice> result = productPriceServiceImpl.getProductPrices(1L);
+		List<ProductPriceDTO> result = productPriceServiceImpl.getProductPrices(1L);
 		
 		// then
 		verify(productPriceDao).selectByProductId(anyLong());

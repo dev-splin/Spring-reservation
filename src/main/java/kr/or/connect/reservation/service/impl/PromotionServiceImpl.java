@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.PromotionDao;
-import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.dto.PromotionDTO;
 import kr.or.connect.reservation.service.PromotionService;
 
 @Service
@@ -17,7 +17,7 @@ public class PromotionServiceImpl implements PromotionService {
 
 	@Override
 	@Transactional
-	public List<Promotion> getPromotion() {
+	public List<PromotionDTO> getPromotion() {
 		return promotionDao.selectAll();
 	}
 }

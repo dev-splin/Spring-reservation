@@ -2,8 +2,8 @@ package kr.or.connect.reservation.service;
 
 import java.util.List;
 
-import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductImageDTO;
 
 public interface ProductImageService {
-	List<ProductImage> getProductImageByProductId(Long productId, String type);
+	List<ProductImageDTO> getProductImageByProductId(Long productId, String type);
 }

@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import kr.or.connect.reservation.dto.ReservationUserComment;
+import kr.or.connect.reservation.dto.ReservationUserCommentDTO;
 import static kr.or.connect.reservation.dao.ReservationUserCommentDaoSqls.*;
 
 import java.util.Collections;
@@ -18,7 +18,7 @@ import java.util.Map;
 @Repository
 public class ReservationUserCommentDao {
 	private NamedParameterJdbcTemplate jdbc;
-	private RowMapper<ReservationUserComment> rowMapper = BeanPropertyRowMapper.newInstance(ReservationUserComment.class);
+	private RowMapper<ReservationUserCommentDTO> rowMapper = BeanPropertyRowMapper.newInstance(ReservationUserCommentDTO.class);
 	
 	public ReservationUserCommentDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -28,7 +28,7 @@ public class ReservationUserCommentDao {
 		return jdbc.queryForObject(SELECT_SCORE_AVG_BY_PRODUCT_ID, Collections.singletonMap("productId", productId), Integer.class);
 	}
 	
-	public List<ReservationUserComment> selectReservationUserCommentByProductId(Long productId, int start, int limit) {
+	public List<ReservationUserCommentDTO> selectReservationUserCommentByProductId(Long productId, int start, int limit) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("productId", productId);
 		params.put("start", start);

@@ -1,4 +1,4 @@
-package reservation.ServiceTest;
+package kr.or.connect.reservation.ServiceTest;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import kr.or.connect.reservation.dao.ProductImageDao;
-import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductImageDTO;
 import kr.or.connect.reservation.service.impl.ProductImageServiceImpl;
 
 import static org.mockito.BDDMockito.given;
@@ -33,11 +33,11 @@ public class ProductImageServiceTest {
 	@Test
 	public void selectByIdTest() throws Exception {
 		// given
-		ProductImage productImage = new ProductImage();
+		ProductImageDTO productImage = new ProductImageDTO();
 		productImage.setProductId(1L);
 		productImage.setProductImageId(2L);
 		productImage.setType("ma");
-		productImage.setfileInfoId(61L);
+		productImage.setFileInfoId(61L);
 		productImage.setFileName("파일 이름 테스트");
 		productImage.setSaveFileName("세이브 파일 이름 테스트");
 		productImage.setContentType("내용 타입 테스트");
@@ -45,13 +45,13 @@ public class ProductImageServiceTest {
 		productImage.setCreateDate(new Date());
 		productImage.setModifyDate(new Date());
 		
-		List<ProductImage> list = new ArrayList<>();
+		List<ProductImageDTO> list = new ArrayList<>();
 		list.add(productImage);
 		
 		given(productImageDao.selectByProductId(1L, "ma")).willReturn(list);
 		
 		// when
-		List<ProductImage> result = productImageServiceImpl.getProductImageByProductId(1L, "ma");
+		List<ProductImageDTO> result = productImageServiceImpl.getProductImageByProductId(1L, "ma");
 		
 		// then
 		verify(productImageDao).selectByProductId(anyLong(), anyString());

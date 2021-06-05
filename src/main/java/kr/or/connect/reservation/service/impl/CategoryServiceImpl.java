@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.CategoryDao;
-import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.CategoryDTO;
 import kr.or.connect.reservation.service.CategoryService;
 
 @Service
@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 		
 	@Override
 	@Transactional
-	public List<Category> getCategories() {
+	public List<CategoryDTO> getCategories() {
 		return categoryDao.selectAll();
 	}
 

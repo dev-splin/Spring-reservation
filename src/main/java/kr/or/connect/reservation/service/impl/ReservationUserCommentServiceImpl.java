@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.ReservationUserCommentDao;
-import kr.or.connect.reservation.dto.ReservationUserComment;
+import kr.or.connect.reservation.dto.ReservationUserCommentDTO;
 import kr.or.connect.reservation.service.ReservationUserCommentService;
 
 @Service
@@ -23,7 +23,7 @@ public class ReservationUserCommentServiceImpl implements ReservationUserComment
 
 	@Override
 	@Transactional
-	public List<ReservationUserComment> getReservationUserCommentByProductId(Long productId, int start, int limit) {
+	public List<ReservationUserCommentDTO> getReservationUserCommentByProductId(Long productId, int start, int limit) {
 		return reservationUserCommenctDao.selectReservationUserCommentByProductId(productId, start, limit);
 	}
 	

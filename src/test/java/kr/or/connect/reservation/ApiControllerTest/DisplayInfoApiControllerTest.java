@@ -1,4 +1,4 @@
-package reservation.ApiControllerTest;
+package kr.or.connect.reservation.ApiControllerTest;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.config.WebMvcContextConfiguration;
 import kr.or.connect.reservation.controller.api.DisplayinfoApiController;
-import kr.or.connect.reservation.dto.DisplayInfo;
+import kr.or.connect.reservation.dto.DisplayInfoDTO;
 import kr.or.connect.reservation.service.CategoryService;
 import kr.or.connect.reservation.service.DisplayInfoService;
 
@@ -52,7 +52,7 @@ public class DisplayInfoApiControllerTest {
 	
 	@Test
 	public void getDisplayInfos() throws Exception {
-		DisplayInfo displayInfo = new DisplayInfo();
+		DisplayInfoDTO displayInfo = new DisplayInfoDTO();
 		displayInfo.setId(21L);
 		displayInfo.setCategoryId(3L);
 		displayInfo.setName("테스트이름");
@@ -70,7 +70,7 @@ public class DisplayInfoApiControllerTest {
 		displayInfo.setModifyDate(new Date());
 		displayInfo.setFileId(28L);
 		
-		List<DisplayInfo> list = Arrays.asList(displayInfo);
+		List<DisplayInfoDTO> list = Arrays.asList(displayInfo);
 		when(categoryService.getCountByCategoryId(3L)).thenReturn(1);
 		when(displayInfoService.getDisplayInfoByCategoryId(3L, 0L)).thenReturn(list);
 		

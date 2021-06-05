@@ -1,4 +1,4 @@
-package reservation.ServiceTest;
+package kr.or.connect.reservation.ServiceTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import kr.or.connect.reservation.dao.DisplayInfoDao;
-import kr.or.connect.reservation.dto.DisplayInfo;
+import kr.or.connect.reservation.dto.DisplayInfoDTO;
 import kr.or.connect.reservation.service.impl.DisplayInfoServiceImpl;
 
 import static org.mockito.BDDMockito.given;
@@ -32,7 +32,7 @@ public class DisplayInfoServiceTest {
 	@Test
 	public void getDisplayInfoByCategoryIdTest() throws Exception {
 		//given
-		DisplayInfo displayInfo = new DisplayInfo();
+		DisplayInfoDTO displayInfo = new DisplayInfoDTO();
 		displayInfo.setId(21L);
 		displayInfo.setCategoryId(3L);
 		displayInfo.setDisplayInfoId(21L);
@@ -51,13 +51,13 @@ public class DisplayInfoServiceTest {
 		displayInfo.setModifyDate(new Date());
 		displayInfo.setFileId(113L);
 		
-		List<DisplayInfo> list = new ArrayList<>();
+		List<DisplayInfoDTO> list = new ArrayList<>();
 		list.add(displayInfo);
 		
 		given(displayInfoDao.selectByCategoryId(3L, 0L)).willReturn(list);
 		
 		//when
-		List<DisplayInfo> result = displayInfoServiceImpl.getDisplayInfoByCategoryId(3L, 0L);
+		List<DisplayInfoDTO> result = displayInfoServiceImpl.getDisplayInfoByCategoryId(3L, 0L);
 		
 		//then
 		verify(displayInfoDao).selectByCategoryId(anyLong(), anyLong());
@@ -67,7 +67,7 @@ public class DisplayInfoServiceTest {
 	@Test
 	public void getDisplayInfoTest() throws Exception {
 		//given
-		DisplayInfo displayInfo = new DisplayInfo();
+		DisplayInfoDTO displayInfo = new DisplayInfoDTO();
 		displayInfo.setId(21L);
 		displayInfo.setCategoryId(3L);
 		displayInfo.setDisplayInfoId(21L);
@@ -86,13 +86,13 @@ public class DisplayInfoServiceTest {
 		displayInfo.setModifyDate(new Date());
 		displayInfo.setFileId(113L);
 		
-		List<DisplayInfo> list = new ArrayList<>();
+		List<DisplayInfoDTO> list = new ArrayList<>();
 		list.add(displayInfo);
 		
 		given(displayInfoDao.selectAll(3L)).willReturn(list);
 		
 		//when
-		List<DisplayInfo> result = displayInfoServiceImpl.getDisplayInfo(3L);
+		List<DisplayInfoDTO> result = displayInfoServiceImpl.getDisplayInfo(3L);
 		
 		//then
 		verify(displayInfoDao).selectAll(anyLong());
@@ -102,7 +102,7 @@ public class DisplayInfoServiceTest {
 	@Test
 	public void getDisplayInfoByDisplayInfoIdTest() throws Exception {
 		//given
-		DisplayInfo displayInfo = new DisplayInfo();
+		DisplayInfoDTO displayInfo = new DisplayInfoDTO();
 		displayInfo.setId(1L);
 		displayInfo.setCategoryId(1L);
 		displayInfo.setDisplayInfoId(1L);
@@ -125,7 +125,7 @@ public class DisplayInfoServiceTest {
 		given(displayInfoDao.selectByDisplayInfoId(1L)).willReturn(displayInfo);
 		
 		//when
-		DisplayInfo result = displayInfoServiceImpl.getDisplayInfoByDisplayInfoId(1L);
+		DisplayInfoDTO result = displayInfoServiceImpl.getDisplayInfoByDisplayInfoId(1L);
 		
 		//then
 		verify(displayInfoDao).selectByDisplayInfoId(anyLong());

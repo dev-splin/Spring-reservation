@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.or.connect.reservation.dto.DisplayInfo;
-import kr.or.connect.reservation.dto.DisplayInfoImage;
-import kr.or.connect.reservation.dto.ProductImage;
-import kr.or.connect.reservation.dto.ProductPrice;
-import kr.or.connect.reservation.dto.ReservationUserComment;
-import kr.or.connect.reservation.dto.ReservationUserCommentImage;
+import kr.or.connect.reservation.dto.DisplayInfoDTO;
+import kr.or.connect.reservation.dto.DisplayInfoImageDTO;
+import kr.or.connect.reservation.dto.ProductImageDTO;
+import kr.or.connect.reservation.dto.ProductPriceDTO;
+import kr.or.connect.reservation.dto.ReservationUserCommentDTO;
+import kr.or.connect.reservation.dto.ReservationUserCommentImageDTO;
 import kr.or.connect.reservation.service.CategoryService;
 import kr.or.connect.reservation.service.DisplayInfoImageService;
 import kr.or.connect.reservation.service.DisplayInfoService;
@@ -51,7 +51,7 @@ public class DisplayinfoApiController {
 			@RequestParam(defaultValue = "0") Long start) {
 		
 		int totalCount;
-		List<DisplayInfo> products;
+		List<DisplayInfoDTO> products;
 		
 		if(categoryId == 0) {
 			products = displayInfoService.getDisplayInfo(start);
@@ -72,6 +72,34 @@ public class DisplayinfoApiController {
 		return map;
 	}
 	
+	@GetMapping("/{displayId}")
+	// displayId에 해당하는 전시정보들을 가져와 json으로 반환합니다.
+	public Map<String, Object> getDetailedDisplayInfos(@PathVariable Long displayId) {
+		
+		DisplayInfoDTO product = displayInfoService.getDisplayInfoByDisplayInfoId(displayId);
+		
+		List<ProductImageDTO> productImages = productImageService.getProductImageByProductId(product.getId(), "ma");
+		List<DisplayInfoImageDTO> displayInfoImages = displayInfoImageService.getDisplayImageByDisplayInfoId(displayId);
+		
+		Integer avgScore = null;
+		try {
+			avgScore = reservationUserCommentService.getScoreAvgScoreByProductId(product.getId());
+		} catch (NullPointerException e) {
+			avgScore = 0;
+		}
+		
+		List<ProductPriceDTO> productPrices = productPriceService.getProductPrices(product.getId());
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("product", product);
+		map.put("productImages", productImages);
+		map.put("displayInfoImages", displayInfoImages);
+		map.put("avgScore", avgScore);
+		map.put("productPrices", productPrices);
+		
+		return map;
+	}
+	
 	@GetMapping("/comments")
 	// productId에 해당하는 상품의 댓글정보들과 총 개수, 읽어온 댓글 수를 json으로 반환합니다. 
 	public Map<String, Object> getProductComments(
@@ -80,13 +108,13 @@ public class DisplayinfoApiController {
 		
 		int commentCount = 5;
 		
-		List<ReservationUserComment> reservationUserComments = 
+		List<ReservationUserCommentDTO> reservationUserComments = 
 				reservationUserCommentService.getReservationUserCommentByProductId(productId, start, commentCount);
 		
 		int totalCount = reservationUserCommentService.getReservationUserCommentCount(productId);
 		
-		for(ReservationUserComment c : reservationUserComments) {
-			List<ReservationUserCommentImage> reservationUserCommentImages = 
+		for(ReservationUserCommentDTO c : reservationUserComments) {
+			List<ReservationUserCommentImageDTO> reservationUserCommentImages = 
 					reservationUserCommentImageService.getReservationUserCommentImageByReservationUserId(c.getUserId());
 			c.setReservationUserCommentImages(reservationUserCommentImages);
 		}
@@ -99,31 +127,4 @@ public class DisplayinfoApiController {
 		return map;
 	}
 	
-	@GetMapping("/{displayId}")
-	// displayId에 해당하는 전시정보들을 가져와 json으로 반환합니다.
-	public Map<String, Object> getDetailedDisplayInfos(@PathVariable Long displayId) {
-		
-		DisplayInfo product = displayInfoService.getDisplayInfoByDisplayInfoId(displayId);
-		
-		List<ProductImage> productImages = productImageService.getProductImageByProductId(product.getId(), "ma");
-		List<DisplayInfoImage> displayInfoImages = displayInfoImageService.getDisplayImageByDisplayInfoId(displayId);
-		
-		Integer avgScore = null;
-		try {
-			avgScore = reservationUserCommentService.getScoreAvgScoreByProductId(product.getId());
-		} catch (NullPointerException e) {
-			avgScore = 0;
-		}
-		
-		List<ProductPrice> productPrices = productPriceService.getProductPrices(product.getId());
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("product", product);
-		map.put("productImages", productImages);
-		map.put("displayInfoImages", displayInfoImages);
-		map.put("avgScore", avgScore);
-		map.put("productPrices", productPrices);
-		
-		return map;
-	}
 }

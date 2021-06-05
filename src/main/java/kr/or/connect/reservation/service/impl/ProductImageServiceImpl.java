@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.ProductImageDao;
-import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductImageDTO;
 import kr.or.connect.reservation.service.ProductImageService;
 
 @Service
@@ -17,7 +17,7 @@ public class ProductImageServiceImpl implements ProductImageService {
 
 	@Override
 	@Transactional
-	public List<ProductImage> getProductImageByProductId(Long productId, String type) {
+	public List<ProductImageDTO> getProductImageByProductId(Long productId, String type) {
 		return productImageDao.selectByProductId(productId,type);
 	}
 }

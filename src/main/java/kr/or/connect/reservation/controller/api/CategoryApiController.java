@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.CategoryDTO;
 import kr.or.connect.reservation.service.CategoryService;
 
 @RestController
@@ -22,7 +22,7 @@ public class CategoryApiController {
 	// category를 가져와서 json으로 반환합니다.
 	@GetMapping
 	public Map<String, Object> getCategories() {
-		List<Category> list = categoryService.getCategories();
+		List<CategoryDTO> list = categoryService.getCategories();
 		Map<String, Object> map = new HashMap<>();
 		
 		map.put("size", list.size());

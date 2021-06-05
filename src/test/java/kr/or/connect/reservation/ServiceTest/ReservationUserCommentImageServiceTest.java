@@ -1,4 +1,4 @@
-package reservation.ServiceTest;
+package kr.or.connect.reservation.ServiceTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import kr.or.connect.reservation.dao.ReservationUserCommentImageDao;
-import kr.or.connect.reservation.dto.ReservationUserCommentImage;
+import kr.or.connect.reservation.dto.ReservationUserCommentImageDTO;
 import kr.or.connect.reservation.service.impl.ReservationUserCommentImageServiceImpl;
 
 import static org.mockito.BDDMockito.given;
@@ -32,15 +32,19 @@ public class ReservationUserCommentImageServiceTest {
 	@Test
 	public void getReservationUserCommentImageByReservationUserIdTest() {
 		// given
-		ReservationUserCommentImage reservationUserCommentImage = new ReservationUserCommentImage();
+		ReservationUserCommentImageDTO reservationUserCommentImage = new ReservationUserCommentImageDTO();
+		reservationUserCommentImage.setId(1L);
+		reservationUserCommentImage.setReservationInfoId(2L);
+		reservationUserCommentImage.setReservationUserCommentId(3L);
+		reservationUserCommentImage.setFileId(4L);
 		
-		List<ReservationUserCommentImage> list = new ArrayList<>();
+		List<ReservationUserCommentImageDTO> list = new ArrayList<>();
 		list.add(reservationUserCommentImage);
 		
 		given(reservationUserCommentImageDao.selectByReservationUserId(15L)).willReturn(list);
 		
 		// when
-		List<ReservationUserCommentImage> result = reservationUserCommentImageServiceImpl.getReservationUserCommentImageByReservationUserId(15L);
+		List<ReservationUserCommentImageDTO> result = reservationUserCommentImageServiceImpl.getReservationUserCommentImageByReservationUserId(15L);
 		
 		// then
 		verify(reservationUserCommentImageDao).selectByReservationUserId(anyLong());

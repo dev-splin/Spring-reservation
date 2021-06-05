@@ -2,8 +2,8 @@ package kr.or.connect.reservation.service;
 
 import java.util.List;
 
-import kr.or.connect.reservation.dto.ReservationUserCommentImage;
+import kr.or.connect.reservation.dto.ReservationUserCommentImageDTO;
 
 public interface ReservationUserCommentImageService {
-	List<ReservationUserCommentImage> getReservationUserCommentImageByReservationUserId(Long reservationUserId);
+	List<ReservationUserCommentImageDTO> getReservationUserCommentImageByReservationUserId(Long reservationUserId);
 }

@@ -1,4 +1,4 @@
-package reservation.ServiceTest;
+package kr.or.connect.reservation.ServiceTest;
 
 
 import org.junit.Test;
@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import kr.or.connect.reservation.dao.PromotionDao;
-import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.dto.PromotionDTO;
 import kr.or.connect.reservation.service.impl.PromotionServiceImpl;
 
 import static org.mockito.BDDMockito.given;
@@ -32,7 +32,7 @@ public class PromotionServiceTest {
 	@Test
 	public void selectAllTest() throws Exception {
 		// given
-		Promotion promotion = new Promotion();
+		PromotionDTO promotion = new PromotionDTO();
 		promotion.setId(1L);
 		promotion.setProductId(1L);
 		promotion.setCategoryId(1L);
@@ -40,13 +40,13 @@ public class PromotionServiceTest {
 		promotion.setDescription("설명 테스트");
 		promotion.setFileId(61L);
 		
-		List<Promotion> list = new ArrayList<>();
+		List<PromotionDTO> list = new ArrayList<>();
 		list.add(promotion); 
 		
 		given(promotionDao.selectAll()).willReturn(list);
 		
 		//when
-		List<Promotion> result = promotionServiceImpl.getPromotion();
+		List<PromotionDTO> result = promotionServiceImpl.getPromotion();
 		
 		//then
 		verify(promotionDao).selectAll();

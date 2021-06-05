@@ -22,16 +22,19 @@
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <spring.version>5.2.3.RELEASE</spring.version>
     <jackson2.version>2.9.4</jackson2.version>
+    <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+    <m2e.apt.activation>jdt_apt</m2e.apt.activation>
   </properties>
 
-  <!-- junit  -->
   <dependencies>
+  <!-- junit  -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+
     
     <!-- Mock -->
     <dependency>
@@ -141,6 +144,24 @@
 	</dependency>
 	
 	
+    <!-- Lombok과 mapstruct를 같이 사용할 경우, Lombok이 먼저 와야 합니다. -->
+    <!-- Lombok -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.20</version>
+        <scope>provided</scope>
+    </dependency>
+        
+        
+    <!-- mapstruct -->
+    <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${org.mapstruct.version}</version>
+    </dependency>
+	
+	
 	<!-- Spring Security -->
     <!-- Spring Security Core -->
     <dependency>
@@ -193,7 +214,6 @@
 
   <build>
     <finalName>reservation</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
       
       	<!-- maven 버전 설정을 위한 플러그인 입니다.-->
@@ -204,6 +224,19 @@
 			<configuration>
 				<source>1.8</source>
 				<target>1.8</target>
+				<annotationProcessorPaths>
+                    <path>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>${org.mapstruct.version}</version>
+                    </path>
+                    <!-- other annotation processors -->
+                </annotationProcessorPaths>
+                
+                <annotationProcessors>
+           			<annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>
+        		</annotationProcessors>
+        		
 			</configuration>
 		</plugin>
       	
@@ -237,6 +270,5 @@
           <version>2.8.2</version>
         </plugin>
       </plugins>
-    </pluginManagement>
   </build>
 </project>

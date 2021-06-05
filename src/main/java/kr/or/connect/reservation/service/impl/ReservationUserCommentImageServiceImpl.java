@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.ReservationUserCommentImageDao;
-import kr.or.connect.reservation.dto.ReservationUserCommentImage;
+import kr.or.connect.reservation.dto.ReservationUserCommentImageDTO;
 import kr.or.connect.reservation.service.ReservationUserCommentImageService;
 
 @Service
@@ -17,7 +17,7 @@ public class ReservationUserCommentImageServiceImpl implements ReservationUserCo
 	
 	@Override
 	@Transactional
-	public List<ReservationUserCommentImage> getReservationUserCommentImageByReservationUserId(Long reservationUserId) {
+	public List<ReservationUserCommentImageDTO> getReservationUserCommentImageByReservationUserId(Long reservationUserId) {
 		return reservationUserCommentImageDao.selectByReservationUserId(reservationUserId);
 	}
 

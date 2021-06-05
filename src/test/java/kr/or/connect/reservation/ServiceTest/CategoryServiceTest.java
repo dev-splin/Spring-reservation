@@ -1,4 +1,4 @@
-package reservation.ServiceTest;
+package kr.or.connect.reservation.ServiceTest;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import kr.or.connect.reservation.dao.CategoryDao;
-import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.CategoryDTO;
 import kr.or.connect.reservation.service.impl.CategoryServiceImpl;
 
 import static org.mockito.BDDMockito.given;
@@ -34,15 +34,13 @@ public class CategoryServiceTest {
 	public void countTest() throws Exception {
 		// given
 		given(categoryDao.selectCount()).willReturn(1);
-//		when(categoryDao.selectCount()).thenReturn(1);
-		
+				
 		//when
 		int result = categoryService.getCount();
 		
 		//then
 		verify(categoryDao).selectCount();
 		assertThat(result, is(1));
-//		Assert.assertEquals(1, result);
 	}
 	
 	@Test
@@ -61,17 +59,17 @@ public class CategoryServiceTest {
 	@Test
 	public void selectAllTest() throws Exception {
 		// given
-		Category category = new Category();
+		CategoryDTO category = new CategoryDTO();
 		category.setCount(1L);
 		category.setId(1L);
 		category.setName("test");
-		List<Category> list = new ArrayList<>();
+		List<CategoryDTO> list = new ArrayList<>();
 		list.add(category);
 		
 		given(categoryDao.selectAll()).willReturn(list);
 		
 		//when
-		List<Category> result = categoryService.getCategories();
+		List<CategoryDTO> result = categoryService.getCategories();
 		
 		//then
 		verify(categoryDao).selectAll();

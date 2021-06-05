@@ -1,4 +1,4 @@
-package reservation.ServiceTest;
+package kr.or.connect.reservation.ServiceTest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,10 +8,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import kr.or.connect.reservation.dao.UserDao;
 import kr.or.connect.reservation.dao.UserRoleDao;
-import kr.or.connect.reservation.dto.User;
-import kr.or.connect.reservation.dto.UserRole;
-import kr.or.connect.reservation.security.UserEntity;
-import kr.or.connect.reservation.security.UserRoleEntity;
+import kr.or.connect.reservation.dto.UserDTO;
+import kr.or.connect.reservation.dto.UserRoleDTO;
+import kr.or.connect.reservation.security.UserLoginInfoDTO;
+import kr.or.connect.reservation.security.UserLoginRoleDTO;
 import kr.or.connect.reservation.service.impl.UserServiceImpl;
 
 import static org.mockito.BDDMockito.given;
@@ -37,7 +37,7 @@ public class UserServiceTest {
 	@Test
 	public void getUserEntityTest() {
 		// given
-		User user = new User();
+		UserDTO user = new UserDTO();
 		user.setId(1L);
 		user.setEmail("test");
 		user.setName("testName");
@@ -45,7 +45,7 @@ public class UserServiceTest {
 		given(userDao.getUserByEmail("test")).willReturn(user);
 		
 		// when
-		UserEntity result = userServiceImpl.getUserEntity("test");
+		UserLoginInfoDTO result = userServiceImpl.getUserEntity("test");
 		
 		// then
 		verify(userDao).getUserByEmail(anyString());
@@ -55,18 +55,18 @@ public class UserServiceTest {
 	@Test
 	public void getUserRoleEntitysTest() {
 		// given
-		UserRole userRole = new UserRole();
+		UserRoleDTO userRole = new UserRoleDTO();
 		userRole.setId(1L);
 		userRole.setRoleName("testRole");
 		userRole.setUserId(2L);
 		
-		List<UserRole> list = new ArrayList<>();
+		List<UserRoleDTO> list = new ArrayList<>();
 		list.add(userRole);
 		
 		given(userRoleDao.getUserRoleByEmail("test")).willReturn(list);
 		
 		// when
-		List<UserRoleEntity> result = userServiceImpl.getUserRoleEntitys("test");
+		List<UserLoginRoleDTO> result = userServiceImpl.getUserRoleEntitys("test");
 		
 		// then
 		verify(userRoleDao).getUserRoleByEmail(anyString());

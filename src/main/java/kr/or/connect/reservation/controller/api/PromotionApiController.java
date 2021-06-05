@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.dto.PromotionDTO;
 import kr.or.connect.reservation.service.PromotionService;
 
 @RestController
@@ -23,7 +23,7 @@ public class PromotionApiController {
 	// 프로모션 정보를 가져와 size와 함께 json으로 반환합니다.
 	public Map<String, Object> getPromotions() {
 		
-		List<Promotion> list = promotionService.getPromotion();
+		List<PromotionDTO> list = promotionService.getPromotion();
 		int size = list.size();
 		
 		Map<String, Object> map = new HashMap<>();

@@ -2,10 +2,10 @@ package kr.or.connect.reservation.service;
 
 import java.util.List;
 
-import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.CategoryDTO;
 
 public interface CategoryService {
-	List<Category> getCategories();
+	List<CategoryDTO> getCategories();
 	int getCountByCategoryId(Long categoryId);
 	int getCount();
 }

@@ -2,8 +2,8 @@ package kr.or.connect.reservation.service;
 
 import java.util.List;
 
-import kr.or.connect.reservation.dto.DisplayInfoImage;
+import kr.or.connect.reservation.dto.DisplayInfoImageDTO;
 
 public interface DisplayInfoImageService {
-	List<DisplayInfoImage> getDisplayImageByDisplayInfoId(Long displayInfoId);
+	List<DisplayInfoImageDTO> getDisplayImageByDisplayInfoId(Long displayInfoId);
 }

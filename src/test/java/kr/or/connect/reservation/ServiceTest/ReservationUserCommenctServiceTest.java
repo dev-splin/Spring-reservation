@@ -1,4 +1,4 @@
-package reservation.ServiceTest;
+package kr.or.connect.reservation.ServiceTest;
 
 
 import org.junit.Test;
@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import kr.or.connect.reservation.dao.ReservationUserCommentDao;
-import kr.or.connect.reservation.dto.ReservationUserComment;
+import kr.or.connect.reservation.dto.ReservationUserCommentDTO;
 import kr.or.connect.reservation.service.impl.ReservationUserCommentServiceImpl;
 
 import static org.mockito.BDDMockito.given;
@@ -24,7 +24,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
 @RunWith(MockitoJUnitRunner.class)
-public class reservationUserCommenctServiceTest {
+public class ReservationUserCommenctServiceTest {
 	@InjectMocks
 	ReservationUserCommentServiceImpl reservationUserCommentServiceImpl;
 	
@@ -47,7 +47,7 @@ public class reservationUserCommenctServiceTest {
 	@Test
 	public void getReservationUserCommentByProductIdTest() {
 		// given
-		ReservationUserComment reservationUserComment = new ReservationUserComment();
+		ReservationUserCommentDTO reservationUserComment = new ReservationUserCommentDTO();
 		reservationUserComment.setId(15L);
 		reservationUserComment.setProductId(1L);
 		reservationUserComment.setReservationInfoId(15L);
@@ -58,13 +58,13 @@ public class reservationUserCommenctServiceTest {
 		reservationUserComment.setModifyDate(new Date());
 		reservationUserComment.setReservationUserCommentImages(null);
 		
-		List<ReservationUserComment> list = new ArrayList<>();
+		List<ReservationUserCommentDTO> list = new ArrayList<>();
 		list.add(reservationUserComment);
 		
 		given(reservationUserCommentDao.selectReservationUserCommentByProductId(1L, 0, 5)).willReturn(list);
 		
 		// when
-		List<ReservationUserComment> result = reservationUserCommentServiceImpl.getReservationUserCommentByProductId(1L, 0, 5);
+		List<ReservationUserCommentDTO> result = reservationUserCommentServiceImpl.getReservationUserCommentByProductId(1L, 0, 5);
 		
 		// then
 		verify(reservationUserCommentDao).selectReservationUserCommentByProductId(anyLong(), anyInt(), anyInt());
