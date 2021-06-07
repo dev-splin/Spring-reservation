@@ -17,11 +17,13 @@ import kr.or.connect.reservation.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
+	private final UserDao userDao;
+	private final UserRoleDao userRoleDao;
 	
-	@Autowired
-	UserDao userDao;
-	@Autowired
-	UserRoleDao userRoleDao;
+	public UserServiceImpl(UserDao userDao, UserRoleDao userRoleDao) {
+		this.userDao = userDao;
+		this.userRoleDao = userRoleDao;
+	}
 
 	@Override
 	@Transactional

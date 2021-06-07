@@ -1,6 +1,5 @@
 package kr.or.connect.reservation.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,8 +16,11 @@ import kr.or.connect.reservation.security.CustomUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-	@Autowired
-	CustomUserDetailsService customUserDetailsService;
+	private final CustomUserDetailsService customUserDetailsService;
+	
+	public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+		this.customUserDetailsService = customUserDetailsService;
+	}
 	
 	@Override
 	// 인증/인가가 필요 없는 경로 설정

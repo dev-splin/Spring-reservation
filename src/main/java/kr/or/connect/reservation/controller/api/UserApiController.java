@@ -1,6 +1,5 @@
 package kr.or.connect.reservation.controller.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +12,14 @@ import kr.or.connect.reservation.service.UserService;
 @RequestMapping(path = "/users")
 public class UserApiController {
 	
-	@Autowired
-	UserService userService;
-	@Autowired
-	PasswordEncoder passwordEncoder;
+	private final UserService userService;
+	private final PasswordEncoder passwordEncoder;
+	
+	public UserApiController(UserService userService,
+			PasswordEncoder passwordEncoder) {
+		this.userService = userService;
+		this.passwordEncoder = passwordEncoder;
+	}
 	
 	// 로그인 폼
 	@GetMapping("/loginform")

@@ -29,20 +29,29 @@ import kr.or.connect.reservation.service.ReservationUserCommentService;
 @RequestMapping(path = "/api/displayinfos")
 public class DisplayinfoApiController {
 
-	@Autowired
-	CategoryService categoryService;
-	@Autowired
-	DisplayInfoService displayInfoService;
-	@Autowired
-	ProductImageService productImageService;
-	@Autowired
-	DisplayInfoImageService displayInfoImageService;
-	@Autowired
-	ReservationUserCommentService reservationUserCommentService;
-	@Autowired
-	ProductPriceService productPriceService;
-	@Autowired
-	ReservationUserCommentImageService reservationUserCommentImageService;
+	private final CategoryService categoryService;
+	private final DisplayInfoService displayInfoService;
+	private final ProductImageService productImageService;
+	private final DisplayInfoImageService displayInfoImageService;
+	private final ReservationUserCommentService reservationUserCommentService;
+	private final ProductPriceService productPriceService;
+	private final ReservationUserCommentImageService reservationUserCommentImageService;
+	
+	public DisplayinfoApiController(CategoryService categoryService,
+			DisplayInfoService displayInfoService,
+			ProductImageService productImageService,
+			DisplayInfoImageService displayInfoImageService,
+			ReservationUserCommentService reservationUserCommentService,
+			ProductPriceService productPriceService,
+			ReservationUserCommentImageService reservationUserCommentImageService) {
+		this.categoryService = categoryService;
+		this.displayInfoService = displayInfoService;
+		this.productImageService = productImageService;
+		this.displayInfoImageService = displayInfoImageService;
+		this.reservationUserCommentService = reservationUserCommentService;
+		this.productPriceService = productPriceService;
+		this.reservationUserCommentImageService = reservationUserCommentImageService;
+	}
 	
 	@GetMapping
 	// 카테고리id에 해당하는 디스플레이 정보 4개, 총 개수를 가져와 json으로 반환합니다.

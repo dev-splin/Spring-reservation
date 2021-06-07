@@ -16,8 +16,11 @@ import kr.or.connect.reservation.service.PromotionService;
 @RequestMapping(path = "/api/promotions")
 public class PromotionApiController {
 	
-	@Autowired
-	PromotionService promotionService;
+	private final PromotionService promotionService;
+	
+	public PromotionApiController(PromotionService promotionService) {
+		this.promotionService = promotionService;
+	}
 
 	@GetMapping
 	// 프로모션 정보를 가져와 size와 함께 json으로 반환합니다.

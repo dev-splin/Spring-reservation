@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.config.SecurityConfig;
 import kr.or.connect.reservation.config.WebMvcContextConfiguration;
 import kr.or.connect.reservation.controller.api.DisplayinfoApiController;
 import kr.or.connect.reservation.dto.DisplayInfoDTO;
@@ -33,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {WebMvcContextConfiguration.class, ApplicationConfig.class})
+@ContextConfiguration(classes = {WebMvcContextConfiguration.class, ApplicationConfig.class, SecurityConfig.class})
 public class DisplayInfoApiControllerTest {
 
 	@InjectMocks

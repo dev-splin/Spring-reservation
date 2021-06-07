@@ -2,7 +2,6 @@ package kr.or.connect.reservation.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,8 +11,11 @@ import kr.or.connect.reservation.service.DisplayInfoService;
 
 @Service
 public class DisplayInfoServiceImpl implements DisplayInfoService{
-	@Autowired
-	DisplayInfoDao displayInfoDao;
+	private final DisplayInfoDao displayInfoDao;
+	
+	public DisplayInfoServiceImpl(DisplayInfoDao displayInfoDao) {
+		this.displayInfoDao = displayInfoDao;
+	}
 
 	@Override
 	@Transactional

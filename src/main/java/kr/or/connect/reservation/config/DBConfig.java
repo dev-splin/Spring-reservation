@@ -3,7 +3,6 @@ package kr.or.connect.reservation.config;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -18,9 +17,12 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @PropertySource("classpath:application.properties")
 public class DBConfig implements TransactionManagementConfigurer {
 	
-	@Autowired
 	// @PropertySource를 통해 properties 파일을 Environment에 로드합니다.
-	Environment env;
+	private final Environment env;
+	
+	public DBConfig(Environment env) {
+		this.env = env;
+	}
 	
 	@Bean
 	// dataSource 설정

@@ -2,7 +2,6 @@ package kr.or.connect.reservation.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,8 +11,11 @@ import kr.or.connect.reservation.service.ProductPriceService;
 
 @Service
 public class ProductPriceServiceImpl implements ProductPriceService{
-	@Autowired
-	ProductPriceDao productPriceDao;
+	private final ProductPriceDao productPriceDao;
+	
+	public ProductPriceServiceImpl(ProductPriceDao productPriceDao) {
+		this.productPriceDao = productPriceDao;
+	}
 
 	@Override
 	@Transactional
