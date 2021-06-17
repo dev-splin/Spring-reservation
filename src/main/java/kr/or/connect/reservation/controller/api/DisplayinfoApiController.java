@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,7 @@ import kr.or.connect.reservation.service.ReservationUserCommentService;
 
 @RestController
 @RequestMapping(path = "/api/displayinfos")
+@Validated
 public class DisplayinfoApiController {
 
 	private final CategoryService categoryService;
@@ -83,7 +87,7 @@ public class DisplayinfoApiController {
 	
 	@GetMapping("/{displayId}")
 	// displayId에 해당하는 전시정보들을 가져와 json으로 반환합니다.
-	public Map<String, Object> getDetailedDisplayInfos(@PathVariable Long displayId) {
+	public Map<String, Object> getDetailedDisplayInfos(@PathVariable @NotNull Long displayId) {
 		
 		DisplayInfoDTO product = displayInfoService.getDisplayInfoByDisplayInfoId(displayId);
 		

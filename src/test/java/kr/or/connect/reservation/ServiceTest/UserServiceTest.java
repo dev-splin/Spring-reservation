@@ -45,11 +45,11 @@ public class UserServiceTest {
 		given(userDao.getUserByEmail("test")).willReturn(user);
 		
 		// when
-		UserLoginInfoDTO result = userServiceImpl.getUserEntity("test");
+		UserDTO result = userServiceImpl.getUserDTO("test");
 		
 		// then
 		verify(userDao).getUserByEmail(anyString());
-		assertThat(result.getLoginUserId(), is("test"));
+		assertThat(result.getEmail(), is("test"));
 	}
 	
 	@Test

@@ -1,6 +1,5 @@
 package kr.or.connect.reservation.dto;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.Getter;
@@ -10,12 +9,15 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class ReservationInfoDTO {
+public class ReservationProductInfoDTO {
 	private Long id;
 	private Long productId;
-	private int cancelFlag;
 	private Long displayInfoId;
+	private int cancelFlag;
+	private String productDescription;
+	private String productContent;
 	private Long userId;
+	private int sumPrice;
 	private Date reservationDate;
 	private Date createDate;
 	private Date modifyDate;

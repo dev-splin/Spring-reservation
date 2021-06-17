@@ -26,9 +26,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public UserLoginInfoDTO getUserEntity(String loginUserId) {
-		UserDTO user = userDao.getUserByEmail(loginUserId);
-		return new UserLoginInfoDTO(user.getEmail(), user.getPassword());
+	public UserDTO getUserDTO(String loginUserId) {
+		return userDao.getUserByEmail(loginUserId);
 	}
 
 	@Override

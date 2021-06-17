@@ -27,7 +27,7 @@
   </properties>
 
   <dependencies>
-  <!-- junit  -->
+  	<!-- junit  -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -160,6 +160,15 @@
         <artifactId>mapstruct</artifactId>
         <version>${org.mapstruct.version}</version>
     </dependency>
+    
+    
+    <!-- hibernate-validator -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-validator</artifactId>
+	    <version>6.1.0.Final</version>
+	</dependency>
+    
 	
 	
 	<!-- Spring Security -->
