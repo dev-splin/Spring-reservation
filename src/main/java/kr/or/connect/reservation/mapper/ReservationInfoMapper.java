@@ -15,7 +15,4 @@ public interface ReservationInfoMapper extends GenericMapper<RequestReservationI
 	@Override
 	@Mapping(source = "reservationYearMonthDay", target = "reservationDate")
 	ReservationInfoDTO DTOToEntity(RequestReservationInfoDTO DTO);
-	
-	ResponseRegisterReservationInfoDTO DTOToResponse(ReservationInfoDTO entity);
-	
 }

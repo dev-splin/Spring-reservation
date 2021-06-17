@@ -3,6 +3,7 @@ package kr.or.connect.reservation.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -50,6 +51,11 @@ public class WebMvcContextConfiguration implements WebMvcConfigurer {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
+	
+	@Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor() {
+         return new MethodValidationPostProcessor();
+    }
 	
 	@Bean
 	// Swagger 사용을 위한 설정

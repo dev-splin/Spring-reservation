@@ -88,6 +88,6 @@ public class ReservationInfoServiceTest {
 		// then
 		verify(reservationInfoDao).getReservationInfoById(anyLong());
 		verify(reservationInfoPriceDao).getReservationInfoPriceById(anyLong());
-		assertThat(result.getId(), is(1L));
+		assertThat(result.getReservationInfoDTO().getId(), is(1L));
 	}
 }

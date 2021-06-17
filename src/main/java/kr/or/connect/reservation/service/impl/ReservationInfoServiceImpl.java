@@ -35,7 +35,8 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 		
 		ReservationInfoDTO reservationInfoDTO = reservationInfoDao.getReservationInfoById(reservationInfoId);
 		
-		ResponseRegisterReservationInfoDTO responseRegisterReservationInfoDTO = ReservationInfoMapper.INSTANCE.DTOToResponse(reservationInfoDTO);
+		ResponseRegisterReservationInfoDTO responseRegisterReservationInfoDTO = new ResponseRegisterReservationInfoDTO();
+		responseRegisterReservationInfoDTO.setReservationInfoDTO(reservationInfoDTO);
 		
 		List<ReservationInfoPriceDTO> list = new ArrayList<>();
 		
