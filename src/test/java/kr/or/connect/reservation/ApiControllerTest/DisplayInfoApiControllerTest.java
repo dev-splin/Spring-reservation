@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.config.SecurityConfig;
@@ -48,7 +49,7 @@ public class DisplayInfoApiControllerTest {
 	@Before
 	public void createController() {
 		MockitoAnnotations.initMocks(this);
-		mockMvc = MockMvcBuilders.standaloneSetup(displayinfoApiController).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(displayinfoApiController).addFilters(new CharacterEncodingFilter("UTF-8",true)).build();
 	}
 	
 	@Test
@@ -75,7 +76,8 @@ public class DisplayInfoApiControllerTest {
 		when(categoryService.getCountByCategoryId(3L)).thenReturn(1);
 		when(displayInfoService.getDisplayInfoByCategoryId(3L, 0L)).thenReturn(list);
 		
-		RequestBuilder reqbuilder = MockMvcRequestBuilders.get("/api/displayinfos?categoryId="+3).contentType(MediaType.APPLICATION_JSON);
+		RequestBuilder reqbuilder = MockMvcRequestBuilders.get("/api/displayinfos?categoryId="+3)
+				.characterEncoding("UTF-8").contentType(MediaType.APPLICATION_JSON);
 		mockMvc.perform(reqbuilder).andExpect(status().isOk()).andDo(print());
 		
 		verify(categoryService).getCountByCategoryId(3L);

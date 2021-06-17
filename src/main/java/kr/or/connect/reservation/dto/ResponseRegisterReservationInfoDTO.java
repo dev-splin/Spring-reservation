@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,13 +14,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class ResponseRegisterReservationInfoDTO {
-	private Long id;
-	private Long productId;
-	private int cancelFlag;
-	private Long displayInfoId;
-	private Long userId;
-	private Date reservationDate;
-	private Date createDate;
-	private Date modifyDate;
+	@JsonUnwrapped
+	ReservationInfoDTO reservationInfoDTO;
 	private List<ReservationInfoPriceDTO> prices;
 }
