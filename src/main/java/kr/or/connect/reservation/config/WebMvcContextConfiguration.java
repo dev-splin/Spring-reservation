@@ -21,7 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"kr.or.connect.reservation.controller"})
+@ComponentScan(basePackages = {"kr.or.connect.reservation.controller", "kr.or.connect.reservation.handler"})
 @EnableSwagger2
 public class WebMvcContextConfiguration implements WebMvcConfigurer {
 
@@ -65,16 +65,6 @@ public class WebMvcContextConfiguration implements WebMvcConfigurer {
 				.apis(RequestHandlerSelectors.any()) // 현재 RequestMapping으로 할당된 모든 URL 리스트를 추출
 				.paths(PathSelectors.ant("/api/**")) // PathSelectors.any() 를 할경우 모든 경로가 다 사용된다. RestController가 아닌 것 까지 사용된다.
 				.build()
-				.apiInfo(apiInfo())
 				.useDefaultResponseMessages(false);
 	}
-
-	// Swagger에 나타날 정보들
-	private ApiInfo apiInfo() {
-		Contact contact = new Contact("Splin", "https://dev-splin.github.io/", "dev.splin@gmail.com");
-		ApiInfo apiInfo =
-				new ApiInfo("Swagger Sample", "APIs Sample", "Sample Doc 0.1v", "", contact, "This sentence will be display.", "/");
-		return apiInfo;
-	}
-	
 }

@@ -43,4 +43,8 @@ public class ReservationInfoDao {
 		
 		return insert.executeAndReturnKey(new BeanPropertySqlParameterSource(reservationInfoDTO)).longValue();
 	}
+	
+	public int getCancelFlagById(Long id) {
+		return jdbc.update(UPDATE_CANCEL_FLAG_BY_RESERVATION_INFO_ID, Collections.singletonMap("id", id));
+	}
 }

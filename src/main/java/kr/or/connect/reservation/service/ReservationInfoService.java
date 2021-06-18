@@ -6,4 +6,6 @@ import kr.or.connect.reservation.dto.ResponseRegisterReservationInfoDTO;
 public interface ReservationInfoService {
 	ResponseRegisterReservationInfoDTO RegisterReservation(
 			RequestReservationInfoDTO requestReservationInfoDTO);
+	
+	int reservationCancel(Long id);
 }
