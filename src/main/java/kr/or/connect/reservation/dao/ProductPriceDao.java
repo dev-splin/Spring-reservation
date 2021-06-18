@@ -26,4 +26,8 @@ public class ProductPriceDao {
 	public List<ProductPriceDTO> selectByProductId(Long productId) {
 		return jdbc.query(SELECT_PRODUCT_PRICE_BY_PRODUCT_ID, Collections.singletonMap("productId", productId), rowMapper);
 	}
+	
+	public int selectPriceSumByReservationInfoId(Long reservationInfoId) {
+		return jdbc.queryForObject(PRICE_SUM_BY_RESERVATION_INFO_ID, Collections.singletonMap("reservationInfoId", reservationInfoId), Integer.class);
+	}
 }
