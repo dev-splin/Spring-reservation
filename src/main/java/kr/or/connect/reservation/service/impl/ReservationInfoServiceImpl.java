@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.ReservationInfoDao;
 import kr.or.connect.reservation.dao.ReservationInfoPriceDao;
@@ -27,6 +28,7 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 	}
 
 	@Override
+	@Transactional
 	public ResponseRegisterReservationInfoDTO RegisterReservation(
 			RequestReservationInfoDTO requestReservationInfoDTO) {
 		
@@ -51,4 +53,9 @@ public class ReservationInfoServiceImpl implements ReservationInfoService {
 		return responseRegisterReservationInfoDTO;
 	}
 
+	@Override
+	@Transactional
+	public int reservationCancel(Long id) {
+		return reservationInfoDao.getCancelFlagById(id);
+	}
 }

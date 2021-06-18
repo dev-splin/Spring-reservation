@@ -210,13 +210,13 @@
     <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger2</artifactId>
-        <version>2.6.1</version>
+        <version>2.9.2</version>
     </dependency>
     <!--  또 가장 중요한 (사용목적이라해도 과언이 아닌) UI 적으로 확인을 위해서는 springfox-swagger-ui 라이브러리가 필요하다. -->
     <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger-ui</artifactId>
-        <version>2.6.1</version>
+        <version>2.9.2</version>
     </dependency>
     
   </dependencies>
