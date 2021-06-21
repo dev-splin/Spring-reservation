@@ -39,6 +39,7 @@ public class ReservationInfoApiController {
 	}
 
 	@PostMapping
+	// Request를 받은 정보를 이용해 예약 정보를 만들어 저장합니다.
 	public ResponseEntity<ResponseRegisterReservationInfoDTO> reservationRegister(
 			@RequestBody @Valid RequestReservationInfoDTO requestReservationInfoDTO) {
 		
@@ -51,6 +52,7 @@ public class ReservationInfoApiController {
 	}
 	
 	@GetMapping
+	// 현재 로그인한 유저의 예약 목록들을 가져옵니다.
 	public ResponseEntity<ResponseReservationProductInfoDTO> getReservationProductInfo(
 			@AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		
@@ -64,6 +66,7 @@ public class ReservationInfoApiController {
 	}
 	
 	@PutMapping
+	// 예약을 취소합니다.(예약 데이터의 예약 flag를 1로 바꿉니다.)
 	public ResponseEntity<ResponseReservationCancelDTO> reservationCancel(
 			@RequestBody @Valid RequestReservationCancelDTO requestReservationCancelDTO) {
 

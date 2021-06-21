@@ -10,8 +10,7 @@ import org.springframework.context.annotation.Import;
 		"kr.or.connect.reservation.dao",
 		"kr.or.connect.reservation.service",
 		"kr.or.connect.reservation.security",
-		"kr.or.connect.reservation.mapper",
-		"kr.or.connect.reservation.validation"
+		"kr.or.connect.reservation.mapper"
 		})
 public class ApplicationConfig {
 
